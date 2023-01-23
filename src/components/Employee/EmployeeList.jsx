@@ -24,6 +24,17 @@ export const EmployeeList = () => {
     fetchData();
   }, []);
 
+  const deleteEmployee = (e, id) => {
+    e.preventDefault();
+    employeeService.deleteEmployee(id).then((res) => {
+      if (employees) {
+        setEmployees((prevElement) => {
+          return prevElement.filter((emp) => emp.id !== id);
+        });
+      }
+    });
+  };
+
   return (
     <div className="container mx-auto my-8">
       <div className="h-12">
@@ -56,7 +67,11 @@ export const EmployeeList = () => {
           {!loading && (
             <tbody className="bg-slate-100 text-slate-900">
               {employees.map((emp) => (
-                <Employee emp={emp} key={emp.id} />
+                <Employee
+                  emp={emp}
+                  key={emp.id}
+                  deleteEmployee={deleteEmployee}
+                />
               ))}
             </tbody>
           )}
