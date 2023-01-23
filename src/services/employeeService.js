@@ -20,7 +20,7 @@ class EmployeeService {
   }
 
   updateEmployee(id, employee) {
-    return axios.put(EMPLOYEE_API_BASE_URL, "/" + id, employee);
+    return axios.put(EMPLOYEE_API_BASE_URL + "/" + id, employee);
   }
 }
 
