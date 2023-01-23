@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AddEmployee } from "./components/AddEmployee";
-import { EmployeeList } from "./components/EmployeeList";
+import { EmployeeList } from "./components/Employee/EmployeeList";
 import { Navbar } from "./components/Navbar";
 
 function App() {
