@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import employeeService from "../services/employeeService";
 
 export const AddEmployee = () => {
@@ -8,6 +9,8 @@ export const AddEmployee = () => {
     lastname: "",
     emailId: "",
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -19,11 +22,22 @@ export const AddEmployee = () => {
     employeeService
       .saveEmployee(employee)
       .then((res) => {
-        console.log(res);
+        //console.log(res);
+        navigate("/employeeList");
       })
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const reset = (e) => {
+    e.preventDefault();
+    setEmployee({
+      id: "",
+      firstname: "",
+      lastname: "",
+      emailId: "",
+    });
   };
 
   return (
@@ -75,7 +89,10 @@ export const AddEmployee = () => {
           >
             Save
           </button>
-          <button className="rounded text-white font-semibold bg-red-400 py-2 px-6 hover:bg-red-700">
+          <button
+            onClick={reset}
+            className="rounded text-white font-semibold bg-red-400 py-2 px-6 hover:bg-red-700"
+          >
             Clear
           </button>
         </div>
